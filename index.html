@@ -1,0 +1,1402 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Our Little Universe ❤️</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",sans-serif;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+}
+
+body{
+    overflow:hidden;
+    color:white;
+    background:
+    radial-gradient(circle at 20% 20%,#ff4d88 0%,transparent 25%),
+    radial-gradient(circle at 80% 80%,#6a00ff 0%,transparent 25%),
+    linear-gradient(135deg,#14001f,#30002f,#05001c);
+
+    animation:bgMove 12s ease infinite;
+}
+
+@keyframes bgMove{
+    0%{filter:hue-rotate(0deg)}
+    50%{filter:hue-rotate(35deg)}
+    100%{filter:hue-rotate(0deg)}
+}
+
+.stars{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+}
+
+.star{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:white;
+    border-radius:50%;
+    animation:twinkle 2s infinite;
+}
+
+@keyframes twinkle{
+    0%,100%{
+        opacity:.1;
+        transform:scale(.5);
+    }
+    50%{
+        opacity:1;
+        transform:scale(1.5);
+    }
+}
+
+.music{
+    position:fixed;
+    top:15px;
+    right:15px;
+    z-index:1000;
+
+    padding:11px 17px;
+    border-radius:30px;
+    border:1px solid rgba(255,255,255,.3);
+
+    background:rgba(255,255,255,.12);
+    color:white;
+
+    backdrop-filter:blur(12px);
+    cursor:pointer;
+}
+
+.container{
+    position:relative;
+    z-index:5;
+
+    width:94%;
+    max-width:650px;
+
+    max-height:90vh;
+    overflow:auto;
+
+    margin:auto;
+    top:50%;
+    transform:translateY(-50%);
+
+    padding:30px 22px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,.10);
+    backdrop-filter:blur(25px);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    border-radius:35px;
+
+    box-shadow:
+    0 30px 100px rgba(0,0,0,.5),
+    inset 0 0 30px rgba(255,255,255,.05);
+}
+
+.container::-webkit-scrollbar{
+    width:4px;
+}
+
+.container::-webkit-scrollbar-thumb{
+    background:white;
+    border-radius:20px;
+}
+
+.section{
+    display:none;
+}
+
+.section.active{
+    display:block;
+    animation:sectionIn .8s ease;
+}
+
+@keyframes sectionIn{
+    from{
+        opacity:0;
+        transform:translateY(30px) scale(.94);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.bigHeart{
+    font-size:70px;
+    animation:heartbeat 1.2s infinite;
+}
+
+@keyframes heartbeat{
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.22);
+    }
+}
+
+h1{
+    font-size:32px;
+    margin:12px 0;
+}
+
+h2{
+    margin:15px 0;
+}
+
+p{
+    line-height:1.7;
+}
+
+button{
+    border:none;
+    padding:13px 22px;
+    margin:8px;
+    border-radius:30px;
+
+    font-size:15px;
+    font-weight:bold;
+
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.08);
+}
+
+.primary{
+    background:white;
+    color:#e6005c;
+
+    box-shadow:
+    0 0 15px rgba(255,255,255,.5);
+}
+
+.secondary{
+    background:rgba(255,255,255,.12);
+    color:white;
+
+    border:1px solid rgba(255,255,255,.3);
+}
+
+input{
+    width:85%;
+    padding:14px 20px;
+
+    border:none;
+    outline:none;
+
+    border-radius:30px;
+
+    text-align:center;
+
+    font-size:16px;
+
+    margin:18px 0;
+}
+
+.photo{
+    width:190px;
+    height:190px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:5px solid white;
+
+    box-shadow:
+    0 0 30px rgba(255,255,255,.5);
+
+    margin:15px auto;
+
+    display:block;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+
+    margin-top:20px;
+}
+
+.card{
+    padding:18px 10px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.10);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    transition:.4s;
+}
+
+.card:hover{
+    transform:
+    translateY(-8px)
+    rotate(1deg);
+
+    background:rgba(255,255,255,.18);
+}
+
+.card span{
+    display:block;
+    font-size:35px;
+    margin-bottom:8px;
+}
+
+.letter{
+    padding:22px;
+
+    margin:18px 0;
+
+    border-radius:22px;
+
+    background:rgba(255,255,255,.09);
+
+    line-height:1.9;
+}
+
+.timeline{
+    text-align:left;
+}
+
+.memory{
+    padding:15px;
+
+    margin:10px 0;
+
+    border-left:3px solid white;
+
+    background:rgba(255,255,255,.08);
+
+    border-radius:10px;
+}
+
+.meter{
+    width:100%;
+    height:22px;
+
+    background:rgba(255,255,255,.15);
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    margin:20px 0;
+}
+
+.meterFill{
+    width:0%;
+    height:100%;
+
+    background:white;
+
+    border-radius:30px;
+
+    transition:width 2s ease;
+}
+
+.percent{
+    font-size:30px;
+    font-weight:bold;
+}
+
+.envelope{
+    font-size:100px;
+
+    cursor:pointer;
+
+    animation:floatEnvelope 2s infinite;
+}
+
+@keyframes floatEnvelope{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+}
+
+.messageBox{
+    min-height:80px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:15px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    background:rgba(255,255,255,.08);
+
+    border-radius:20px;
+
+    margin:20px 0;
+}
+
+.finalTitle{
+    font-size:40px;
+    font-weight:bold;
+
+    animation:finalGlow 1.5s infinite alternate;
+}
+
+@keyframes finalGlow{
+
+    from{
+        text-shadow:0 0 5px white;
+    }
+
+    to{
+        text-shadow:
+        0 0 10px white,
+        0 0 30px #ff7ab5;
+    }
+}
+
+#noBtn,
+#finalNo{
+    position:fixed;
+    z-index:999;
+}
+
+.floatingHeart{
+
+    position:fixed;
+
+    bottom:-50px;
+
+    font-size:25px;
+
+    pointer-events:none;
+
+    z-index:2;
+
+    animation:rise linear forwards;
+}
+
+@keyframes rise{
+
+    to{
+        transform:
+        translateY(-110vh)
+        rotate(360deg);
+
+        opacity:0;
+    }
+}
+
+.firework{
+
+    position:fixed;
+
+    font-size:28px;
+
+    pointer-events:none;
+
+    z-index:50;
+
+    animation:boom 1.5s forwards;
+}
+
+@keyframes boom{
+
+    0%{
+        transform:scale(.2);
+        opacity:1;
+    }
+
+    100%{
+        transform:
+        translate(
+        calc(-100px + 200px * var(--x)),
+        calc(-100px + 200px * var(--y))
+        )
+        scale(2);
+
+        opacity:0;
+    }
+}
+
+.small{
+    font-size:13px;
+    opacity:.7;
+    margin-top:15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="stars" id="stars"></div>
+
+<audio id="music" loop>
+
+    <source src="love.mp3" type="audio/mpeg">
+
+</audio>
+
+<button class="music" onclick="musicToggle()" id="musicButton">
+🎵 Music OFF
+</button>
+
+<div class="container">
+
+<div class="section active" id="lock">
+
+    <div class="bigHeart">
+        🔐❤️
+    </div>
+
+    <h1>
+        Private Love Space
+    </h1>
+
+    <p>
+        This place belongs to one special person...
+    </p>
+
+    <h2>
+        Prachi ❤️
+    </h2>
+
+    <input
+        id="password"
+        type="password"
+        placeholder="Enter secret password:">
+
+    <br>
+
+    <button
+        class="primary"
+        onclick="unlock()">
+
+        Unlock My Heart 🔓
+
+    </button>
+
+    <p class="small">
+        Hint: shubham's girl name  😉
+    </p>
+
+</div>
+
+<div class="section" id="welcome">
+
+    <div class="bigHeart">
+        💌
+    </div>
+
+    <h1>
+        Welcome, Prachi
+    </h1>
+
+    <p>
+        You just entered my little universe...
+    </p>
+
+    <br>
+
+    <p>
+        Everything you see here
+        was made with one person in mind.
+    </p>
+
+    <h2>
+        YOU. ❤️
+    </h2>
+
+    <button
+        class="primary"
+        onclick="show('envelope')">
+
+        Open The Letter 💌
+
+    </button>
+
+</div>
+
+<div class="section" id="envelope">
+
+    <div
+        class="envelope"
+        onclick="openLetter()">
+
+        💌
+
+    </div>
+
+    <h1>
+        A Secret Letter
+    </h1>
+
+    <p>
+        Tap the envelope...
+    </p>
+
+</div>
+
+<div class="section" id="letter">
+
+    <div class="bigHeart">
+        💖
+    </div>
+
+    <h1>
+        Dear Prachi...
+    </h1>
+
+    <div class="letter">
+
+        Sometimes I wonder...
+
+        <br><br>
+
+        How can one person become
+        such an important part of someone's life?
+
+        <br><br>
+
+        Then I think about you.
+
+        <br><br>
+
+        Your smile,
+        your messages,
+        your little talks...
+
+        <br><br>
+
+        Somehow they make ordinary days
+        feel a little more beautiful.
+
+        <br><br>
+
+        I don't know what the future looks like...
+
+        <br><br>
+
+        But I know one thing:
+
+        <br><br>
+
+        <b>
+        I want you somewhere in it. ❤️
+        </b>
+
+        <br><br>
+
+        — Shubham
+
+    </div>
+
+    <button
+        class="primary"
+        onclick="show('reasons')">
+
+        Why You Are Special ✨
+
+    </button>
+
+</div>
+
+<div class="section" id="reasons">
+
+    <div class="bigHeart">
+        🥰
+    </div>
+
+    <h1>
+        Why I Like You
+    </h1>
+
+    <div class="cards">
+
+        <div class="card">
+            <span>😊</span>
+            Your Smile
+        </div>
+
+        <div class="card">
+            <span>💬</span>
+            Your Talks
+        </div>
+
+        <div class="card">
+            <span>❤️</span>
+            Your Heart
+        </div>
+
+        <div class="card">
+            <span>✨</span>
+            Your Vibe
+        </div>
+
+        <div class="card">
+            <span>🥺</span>
+            Your Care
+        </div>
+
+        <div class="card">
+            <span>♾️</span>
+            Simply You
+        </div>
+
+    </div>
+
+    <button
+        class="primary"
+        onclick="show('meter')">
+
+        Measure My Love ❤️
+
+    </button>
+
+</div>
+
+<div class="section" id="meter">
+
+    <div class="bigHeart">
+        ❤️
+    </div>
+
+    <h1>
+        My Love For Prachi
+    </h1>
+
+    <div class="percent" id="percent">
+        0%
+    </div>
+
+    <div class="meter">
+
+        <div
+            class="meterFill"
+            id="meterFill">
+
+        </div>
+
+    </div>
+
+    <p>
+        Calculating...
+    </p>
+
+    <button
+        class="primary"
+        onclick="startLoveMeter()">
+
+        Start ❤️
+
+    </button>
+
+    <button
+        class="secondary"
+        onclick="show('messages')">
+
+        Next ✨
+
+    </button>
+
+</div>
+
+<div class="section" id="messages">
+
+    <div class="bigHeart">
+        💬
+    </div>
+
+    <h1>
+        Little Messages
+    </h1>
+
+    <div class="messageBox" id="randomMessage">
+
+        Click the button ❤️
+
+    </div>
+
+    <button
+        class="primary"
+        onclick="randomMessage()">
+
+        Give Me One 💕
+    </button>
+
+    <br>
+
+    <button
+        class="secondary"
+        onclick="show('memories')">
+
+        Continue →
+
+    </button>
+
+</div>
+
+<div class="section" id="memories">
+
+    <div class="bigHeart">
+        📖❤️
+    </div>
+
+    <h1>
+        Our Little Story
+    </h1>
+
+    <div class="timeline">
+
+        <div class="memory">
+            ✨ <b>The Beginning</b><br>
+            The day our story started.
+        </div>
+
+        <div class="memory">
+            💬 <b>The Conversations</b><br>
+            Little talks became special.
+        </div>
+
+        <div class="memory">
+            😊 <b>The Smiles</b><br>
+            Somehow you became my happy place.
+        </div>
+
+        <div class="memory">
+            ❤️ <b>The Feelings</b><br>
+            Somewhere along the way, you became special.
+        </div>
+
+        <div class="memory">
+            ♾️ <b>The Future</b><br>
+            Maybe this story has many more chapters.
+        </div>
+
+    </div>
+
+    <button
+        class="primary"
+        onclick="show('photo')">
+
+        One More Thing 📸
+
+    </button>
+
+</div>
+
+<div class="section" id="photo">
+
+    <h1>
+        My Favourite Person ❤️
+    </h1>
+
+    <!-- Put prachi.jpg in same folder -->
+
+    <img
+        src="prachi.jpg"
+        class="photo"
+        alt="Prachi">
+
+    <p>
+        This picture is just a picture...
+    </p>
+
+    <br>
+
+    <p>
+        But for me,
+        <b>you are a whole feeling. ❤️</b>
+    </p>
+
+    <button
+        class="primary"
+        onclick="show('question')">
+
+        I Have A Question 🥺
+
+    </button>
+
+</div>
+
+<div class="section" id="question">
+
+    <div class="bigHeart">
+        🥺❤️
+    </div>
+
+    <h1>
+        Prachi...
+    </h1>
+
+    <p>
+        I need an honest answer.
+    </p>
+
+    <br>
+
+    <h2>
+        Do you like me? ❤️
+    </h2>
+
+    <button
+        class="primary"
+        onclick="show('finalQuestion')">
+
+        YES ❤️
+
+    </button>
+
+    <button
+        id="noBtn"
+        class="secondary"
+        onmouseover="escapeButton('noBtn')"
+        ontouchstart="escapeButton('noBtn')">
+
+        NO 😜
+
+    </button>
+
+</div>
+
+<div class="section" id="finalQuestion">
+
+    <div class="bigHeart">
+        🥹❤️
+    </div>
+
+    <h1>
+        One Last Question...
+    </h1>
+
+    <p>
+
+        Kya tum hamesha meri saath rahogi?
+
+        <br><br>
+
+        Meri smile ka reason banke...
+        ❤️
+
+        <br>
+
+        Meri happiness banke...
+        ❤️
+
+        <br>
+
+        Meri shadow banke...
+        🥺
+
+    </p>
+
+    <br>
+
+    <h2>
+        Forever? ♾️
+    </h2>
+
+    <button
+        class="primary"
+        onclick="forever()">
+
+        YES, ALWAYS ❤️
+
+    </button>
+
+    <button
+        id="finalNo"
+        class="secondary"
+        onmouseover="escapeButton('finalNo')"
+        ontouchstart="escapeButton('finalNo')">
+
+        NO 😜
+
+    </button>
+
+</div>
+
+<div class="section" id="final">
+
+    <div class="bigHeart">
+        💖
+    </div>
+
+    <div class="finalTitle">
+        SHE SAID YES! 🥹❤️
+    </div>
+
+    <div class="letter">
+
+        Prachi...
+
+        <br><br>
+
+        You are not just a person
+        in my life.
+
+        <br><br>
+
+        You are one of my favourite
+        feelings.
+
+        <br><br>
+
+        If life is a book...
+
+        <br>
+
+        <b>
+        I hope your name appears
+        in many of my chapters. 📖❤️
+        </b>
+
+        <br><br>
+
+        I like you.
+
+        <br>
+
+        I care about you.
+
+        <br>
+
+        And I am really happy
+        that you are special to me. ❤️
+
+        <br><br>
+
+        <b>
+        Forever yours,<br>
+        Shubham ❤️
+        </b>
+
+    </div>
+
+    <button
+        class="primary"
+        onclick="show('secret')">
+
+        🤫 Final Secret
+
+    </button>
+
+</div>
+
+<div class="section" id="secret">
+
+    <div class="bigHeart">
+        💎❤️
+    </div>
+
+    <h1>
+        You Found The Secret
+    </h1>
+
+    <div class="letter">
+
+        There is something
+        I didn't write anywhere else...
+
+        <br><br>
+
+        <b>
+        Thank you for being you.
+        ❤️
+        </b>
+
+        <br><br>
+
+        No fancy words.
+
+        <br>
+
+        No complicated promises.
+
+        <br><br>
+
+        Just one simple feeling:
+
+        <br><br>
+
+        <div class="finalTitle">
+            You are special to me. ❤️
+        </div>
+
+        <br>
+
+        Always remember that.
+
+    </div>
+
+    <p class="small">
+        Made with ❤️ by Shubham
+    </p>
+
+</div>
+
+</div>
+
+<script>
+
+const stars =
+document.getElementById("stars");
+
+for(let i=0;i<100;i++){
+
+    const star =
+    document.createElement("div");
+
+    star.className="star";
+
+    star.style.left=
+    Math.random()*100+"vw";
+
+    star.style.top=
+    Math.random()*100+"vh";
+
+    star.style.animationDelay=
+    Math.random()*2+"s";
+
+    stars.appendChild(star);
+}
+
+function show(id){
+
+    document
+    .querySelectorAll(".section")
+    .forEach(section=>{
+        section.classList.remove("active");
+    });
+
+    document
+    .getElementById(id)
+    .classList.add("active");
+}
+
+function unlock(){
+
+    const value=
+    document.getElementById("password").value;
+
+    /*
+       PASSWORD: miss prachi
+    */
+
+    if(value==="miss prachi"){
+
+        show("welcome");
+
+    }else{
+
+        alert("Wrong password 😜❤️");
+
+    }
+}
+
+function openLetter(){
+
+    const envelope=
+    document.querySelector(".envelope");
+
+    envelope.innerHTML="💖";
+
+    setTimeout(()=>{
+        show("letter");
+    },700);
+}
+
+let musicPlaying=false;
+
+function musicToggle(){
+
+    const music=
+    document.getElementById("music");
+
+    const btn=
+    document.getElementById("musicButton");
+
+    if(!musicPlaying){
+
+        music.play();
+
+        musicPlaying=true;
+
+        btn.innerHTML=
+        "🎵 Music ON";
+
+    }else{
+
+        music.pause();
+
+        musicPlaying=false;
+
+        btn.innerHTML=
+        "🎵 Music OFF";
+    }
+}
+
+let meterStarted=false;
+
+function startLoveMeter(){
+
+    if(meterStarted) return;
+
+    meterStarted=true;
+
+    let value=0;
+
+    const fill=
+    document.getElementById("meterFill");
+
+    const percent=
+    document.getElementById("percent");
+
+    const timer=
+    setInterval(()=>{
+
+        value++;
+
+        if(value<=100){
+
+            fill.style.width=
+            value+"%";
+
+            percent.innerHTML=
+            value+"%";
+
+        }
+
+        if(value>=100){
+
+            clearInterval(timer);
+
+            percent.innerHTML=
+            "∞% ❤️";
+
+            fill.style.width="100%";
+        }
+
+    },35);
+}
+
+const messages=[
+
+"Your smile is dangerous... it makes my heart forget everything. ❤️",
+
+"Talking to you can turn an ordinary day into a good one. 🥰",
+
+"If happiness had a name, I would probably call it Prachi. ❤️",
+
+"You somehow became my favourite notification. 📱❤️",
+
+"Some people are memories. Some become reasons to smile. You are both. 🥺",
+
+"I don't need a perfect day when I can talk to you. 💕",
+
+"You are one of those people I never want to lose. ♾️❤️",
+
+"Small conversations with you become big memories. ✨"
+
+];
+
+function randomMessage(){
+
+    const box=
+    document.getElementById("randomMessage");
+
+    const random=
+    Math.floor(
+        Math.random()*messages.length
+    );
+
+    box.style.opacity="0";
+
+    setTimeout(()=>{
+
+        box.innerHTML=
+        messages[random];
+
+        box.style.opacity="1";
+
+    },200);
+
+}
+
+function escapeButton(id){
+
+    const button=
+    document.getElementById(id);
+
+    const maxX=
+    window.innerWidth-
+    button.offsetWidth-
+    20;
+
+    const maxY=
+    window.innerHeight-
+    button.offsetHeight-
+    20;
+
+    const x=
+    Math.max(
+        10,
+        Math.random()*maxX
+    );
+
+    const y=
+    Math.max(
+        10,
+        Math.random()*maxY
+    );
+
+    button.style.left=
+    x+"px";
+
+    button.style.top=
+    y+"px";
+}
+
+function forever(){
+
+    show("final");
+
+    celebration();
+
+}
+
+function createHeart(){
+
+    const heart=
+    document.createElement("div");
+
+    heart.className=
+    "floatingHeart";
+
+    const list=[
+        "❤️",
+        "💖",
+        "💕",
+        "💗",
+        "💓",
+        "💘",
+        "✨",
+        "🥰"
+    ];
+
+    heart.innerHTML=
+    list[
+        Math.floor(
+            Math.random()*list.length
+        )
+    ];
+
+    heart.style.left=
+    Math.random()*100+"vw";
+
+    heart.style.animationDuration=
+    (4+Math.random()*5)+"s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },9000);
+}
+
+setInterval(createHeart,500);
+
+function celebration(){
+
+    for(let i=0;i<70;i++){
+
+        setTimeout(()=>{
+
+            const fire=
+            document.createElement("div");
+
+            fire.className="firework";
+
+            fire.innerHTML=
+            ["❤️","💖","✨","💕","🥹"]
+            [
+                Math.floor(
+                    Math.random()*5
+                )
+            ];
+
+            fire.style.left=
+            (20+Math.random()*60)+"vw";
+
+            fire.style.top=
+            (20+Math.random()*50)+"vh";
+
+            fire.style.setProperty(
+                "--x",
+                Math.random()
+            );
+
+            fire.style.setProperty(
+                "--y",
+                Math.random()
+            );
+
+            document.body.appendChild(fire);
+
+            setTimeout(()=>{
+                fire.remove();
+            },1500);
+
+        },i*70);
+    }
+}
+
+document
+.getElementById("password")
+.addEventListener("keydown",function(e){
+
+    if(e.key==="Enter"){
+
+        unlock();
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
+```
